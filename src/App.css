@@ -274,18 +274,18 @@ body {
 
 .card-container {
   position: relative;
-  width: 150px;
+  width: 180px;
+  height: 260px;      /* altura fija para todas */
   border-radius: 20px;
-  overflow: visible;
+  overflow: hidden;   /* recorta lo que sobresalga */
   transition: transform 0.3s ease;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
 }
 
 .artista-img {
-  width: 100%;   
+  width: 100%;
+  height: 100%;       /* llena todo el contenedor */
+  object-fit: cover;  /* recorta la imagen sin deformarla */
   border-radius: 10px;
   display: block;
   transition: transform 0.3s ease;
