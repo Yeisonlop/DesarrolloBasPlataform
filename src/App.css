@@ -250,7 +250,7 @@ body {
   justify-content: center;
   background: var(--verde);
   border: none;
-  border-radius: 50px;
+  border-radius: 25px;
   color: #000;
   padding: 14px 36px;
   font-size: 0.95rem;
@@ -270,4 +270,76 @@ body {
 
 .spotify-button:active {
   transform: translateY(0);
+}
+
+.card-container {
+  position: relative;
+  width: 150px;
+  border-radius: 20px;
+  overflow: visible;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.artista-img {
+  width: 100%;   
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover {
+  transform: scale(1.1);       
+  z-index: 5;                  
+  transform-origin: center bottom; 
+}
+
+.hover-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-container:hover .hover-overlay {
+  opacity: 1;
+}
+
+.hover-buttons button {
+  background-color: var(--verde);
+  color: #000000;                
+  border: none;               
+  border-radius: 6px;            
+  padding: 2px 12px;                
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.hover-buttons button:hover {
+  background-color: var(--verde-claro);
+  transform: translateY(-2px);
+}
+
+.hover-buttons button:active {
+  transform: translateY(0);
+}
+
+.galeria {
+  display: flex;            
+  justify-content: center;  
+  align-items: flex-end;     
+  flex-wrap: wrap;          
+  gap: 20px;                 
+  height: 100vh;             
+  padding: 20px;
+  background-color: var(--negro);
 }

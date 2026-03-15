@@ -1,5 +1,6 @@
-import React from 'react';
-import '../App.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../App.css";
 
 function Menu() {
   return (
@@ -8,10 +9,11 @@ function Menu() {
         <span className="logo-icon">♪</span>
         <h2>SoundStage</h2>
       </div>
+
       <div className="menu-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#artistas">Artistas</a>
-        <a href="#contacto">Contacto</a>
+        <Link to="/">Inicio</Link>
+        <Link to="/artistas">Artistas</Link>
+        <Link to="/contacto">Contacto</Link>
       </div>
     </nav>
   );

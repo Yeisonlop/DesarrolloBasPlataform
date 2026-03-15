@@ -35,7 +35,7 @@ function Carrusel({ onCambio }) {
       setIndice(nuevoIndice);
       setAnimando(false);
       if (onCambio) onCambio(nuevoIndice);
-    }, 300);
+    }, 400);
   };
 
   useEffect(() => {
