@@ -4,10 +4,13 @@ import '../App.css';
 function Menu() {
   return (
     <nav className="menu">
-      <h2>Mi Página</h2>
-      <div>
+      <div className="menu-logo">
+        <span className="logo-icon">♪</span>
+        <h2>SoundStage</h2>
+      </div>
+      <div className="menu-links">
         <a href="#inicio">Inicio</a>
-        <a href="#acerca de">Acerca de</a>
+        <a href="#artistas">Artistas</a>
         <a href="#contacto">Contacto</a>
       </div>
     </nav>
