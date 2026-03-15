@@ -1,5 +1,6 @@
 import React from "react";
 import ArtistaCard from "../components/artistaCard";
+import Buscador from "../components/buscadorA"; 
 
 import BadBunny from "../imagenes/BadBunny.jpg";
 import Drake from "../imagenes/Drake.jpg";
@@ -33,44 +34,45 @@ const artistas = [
     imagen: TheWeeknd,
     spotify: "https://open.spotify.com/intl-es/artist/1Xyo4u8uXC1ZmMpatF05PJ?si=HHw569qvT3el1thNkTqYNQ"
   },
-
   {
-  nombre: "Harry Styles",
-  edad: 30,
-  genero: "Pop / Pop Rock",
-  descripcion: "Cantante y compositor británico reconocido por su carrera como solista después de One Direction.",
-  imagen: HarryStyles,
-  spotify: "https://open.spotify.com/intl-es/artist/6KImCVD70vtIoJWnq6nGn3?si=ygOO9J9NQGycaRLI6c60iw"
+    nombre: "Harry Styles",
+    edad: 30,
+    genero: "Pop / Pop Rock",
+    descripcion: "Cantante y compositor británico reconocido por su carrera como solista después de One Direction.",
+    imagen: HarryStyles,
+    spotify: "https://open.spotify.com/intl-es/artist/6KImCVD70vtIoJWnq6nGn3?si=ygOO9J9NQGycaRLI6c60iw"
   },
-
   {
-  nombre: "Feid",
-  edad: 32,
-  genero: "Reggaeton / Música Urbana",
-  descripcion: "Cantante y compositor colombiano conocido por su estilo fresco dentro del reggaetón dentro de la música urbana.",
-  imagen: Feid,
-  spotify: "https://open.spotify.com/intl-es/artist/2LRoIwlKmHjgvigdNGBHNo?si=pY6n3MgMQUSTwmQ6nk-sWw"
-
+    nombre: "Feid",
+    edad: 32,
+    genero: "Reggaeton / Música Urbana",
+    descripcion: "Cantante y compositor colombiano conocido por su estilo fresco dentro del reggaetón dentro de la música urbana.",
+    imagen: Feid,
+    spotify: "https://open.spotify.com/intl-es/artist/2LRoIwlKmHjgvigdNGBHNo?si=pY6n3MgMQUSTwmQ6nk-sWw"
   },
-
   {
-  nombre: "Karol G",
-  edad: 33,
-  genero: "Reggaetón / Pop Latino",
-  descripcion: "Artista colombiana ganadora de premios internacionales y una de las voces más influyentes del género urbano.",
-  imagen: KarolG,
-  spotify: "https://open.spotify.com/intl-es/artist/790FomKkXshlbRYZFtlgla?si=Ry61E0-uSsC5wS7UtM9faQ"
+    nombre: "Karol G",
+    edad: 33,
+    genero: "Reggaetón / Pop Latino",
+    descripcion: "Artista colombiana ganadora de premios internacionales y una de las voces más influyentes del género urbano.",
+    imagen: KarolG,
+    spotify: "https://open.spotify.com/intl-es/artist/790FomKkXshlbRYZFtlgla?si=Ry61E0-uSsC5wS7UtM9faQ"
   }
-
-
 ];
 
 function Artistas() {
   return (
-    <div className="galeria">
-      {artistas.map((a) => (
-        <ArtistaCard key={a.nombre} artista={a} />
-      ))}
+    <div className="contenido">
+      <h2 className="bienvenida">Nuestros Artistas</h2>
+
+      {/* Buscador en la sección ARTISTAS */}
+      <Buscador />
+
+      <div className="galeria">
+        {artistas.map((a) => (
+          <ArtistaCard key={a.nombre} artista={a} />
+        ))}
+      </div>
     </div>
   );
 }

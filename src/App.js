@@ -6,6 +6,8 @@ import Carrusel from "./components/Carrusel";
 import Links from "./components/links";
 import Artistas from "./paginas/artistas";
 
+
+
 import "./App.css";
 
 function Inicio() {
