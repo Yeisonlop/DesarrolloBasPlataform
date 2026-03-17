@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ArtistaCard from "../components/artistaCard";
-import Buscador from "../components/buscadorA"; 
+import Buscador from "../components/buscadorA";
 
 import BadBunny from "../imagenes/BadBunny.jpg";
 import Drake from "../imagenes/Drake.jpg";
@@ -16,7 +16,7 @@ const artistas = [
     genero: "Trap / Reggaetón",
     descripcion: "Uno de los artistas más influyentes de la música urbana.",
     imagen: BadBunny,
-    spotify: "https://open.spotify.com/intl-es/artist/4q3ewBCX7sLwd24euuV69X?si=ZfoAE_DLQAaNkEU_7SScLw"
+    spotify: "https://open.spotify.com/intl-es/artist/4q3ewBCX7sLwd24euuV69X"
   },
   {
     nombre: "Drake",
@@ -24,7 +24,7 @@ const artistas = [
     genero: "Hip Hop / R&B",
     descripcion: "Artista canadiense reconocido mundialmente.",
     imagen: Drake,
-    spotify: "https://open.spotify.com/intl-es/artist/3TVXtAsR1Inumwj472S9r4?si=jPebApXjRqOzkDz8Xv_yiA"
+    spotify: "https://open.spotify.com/intl-es/artist/3TVXtAsR1Inumwj472S9r4"
   },
   {
     nombre: "The Weeknd",
@@ -32,46 +32,77 @@ const artistas = [
     genero: "Pop / R&B",
     descripcion: "Conocido por su estilo único y producciones innovadoras.",
     imagen: TheWeeknd,
-    spotify: "https://open.spotify.com/intl-es/artist/1Xyo4u8uXC1ZmMpatF05PJ?si=HHw569qvT3el1thNkTqYNQ"
+    spotify: "https://open.spotify.com/intl-es/artist/1Xyo4u8uXC1ZmMpatF05PJ"
   },
   {
     nombre: "Harry Styles",
     edad: 30,
     genero: "Pop / Pop Rock",
-    descripcion: "Cantante y compositor británico reconocido por su carrera como solista después de One Direction.",
+    descripcion: "Cantante y compositor británico reconocido por su carrera como solista.",
     imagen: HarryStyles,
-    spotify: "https://open.spotify.com/intl-es/artist/6KImCVD70vtIoJWnq6nGn3?si=ygOO9J9NQGycaRLI6c60iw"
+    spotify: "https://open.spotify.com/intl-es/artist/6KImCVD70vtIoJWnq6nGn3"
   },
   {
     nombre: "Feid",
     edad: 32,
     genero: "Reggaeton / Música Urbana",
-    descripcion: "Cantante y compositor colombiano conocido por su estilo fresco dentro del reggaetón dentro de la música urbana.",
+    descripcion: "Cantante y compositor colombiano conocido por su estilo fresco.",
     imagen: Feid,
-    spotify: "https://open.spotify.com/intl-es/artist/2LRoIwlKmHjgvigdNGBHNo?si=pY6n3MgMQUSTwmQ6nk-sWw"
+    spotify: "https://open.spotify.com/intl-es/artist/2LRoIwlKmHjgvigdNGBHNo"
   },
   {
     nombre: "Karol G",
     edad: 33,
     genero: "Reggaetón / Pop Latino",
-    descripcion: "Artista colombiana ganadora de premios internacionales y una de las voces más influyentes del género urbano.",
+    descripcion: "Artista colombiana ganadora de premios internacionales.",
     imagen: KarolG,
-    spotify: "https://open.spotify.com/intl-es/artist/790FomKkXshlbRYZFtlgla?si=Ry61E0-uSsC5wS7UtM9faQ"
+    spotify: "https://open.spotify.com/intl-es/artist/790FomKkXshlbRYZFtlgla"
   }
 ];
 
 function Artistas() {
+  const [busqueda, setBusqueda] = useState("");
+
+  // Objeto que guarda estadísticas de la búsqueda
+  const estadoBusqueda = {
+    terminoBuscado: busqueda,
+    totalArtistas: artistas.length,
+    resultados: artistas.filter((a) =>
+      a.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+      a.genero.toLowerCase().includes(busqueda.toLowerCase())
+    ).length
+  };
+
+  const artistasFiltrados = artistas.filter((a) =>
+    a.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+    a.genero.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
   return (
     <div className="contenido">
-      <h2 className="bienvenida">Nuestros Artistas</h2>
+      <h2 className="titulo-artistas">Nuestros Artistas</h2>
 
-      {/* Buscador en la sección ARTISTAS */}
-      <Buscador />
+      <Buscador busqueda={busqueda} setBusqueda={setBusqueda} />
+
+      {/* Muestra resultados si hay búsqueda activa */}
+      {busqueda && (
+        <p className="resultados-busqueda">
+          {estadoBusqueda.resultados > 0
+            ? `Se encontraron ${estadoBusqueda.resultados} resultado(s) para "${estadoBusqueda.terminoBuscado}"`
+            : `No se encontraron resultados para "${estadoBusqueda.terminoBuscado}"`}
+        </p>
+      )}
 
       <div className="galeria">
-        {artistas.map((a) => (
-          <ArtistaCard key={a.nombre} artista={a} />
-        ))}
+        {artistasFiltrados.length > 0 ? (
+          artistasFiltrados.map((a) => (
+            <ArtistaCard key={a.nombre} artista={a} />
+          ))
+        ) : (
+          <div className="sin-resultados">
+            <p>No encontramos ningún artista con ese nombre o género.</p>
+          </div>
+        )}
       </div>
     </div>
   );
