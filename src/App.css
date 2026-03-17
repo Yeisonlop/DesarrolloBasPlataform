@@ -336,10 +336,9 @@ body {
 .galeria {
   display: flex;            
   justify-content: center;  
-  align-items: flex-end;     
+  align-items: flex-start;     
   flex-wrap: wrap;          
   gap: 20px;                 
-  height: 100vh;             
   padding: 20px;
   background-color: var(--negro);
 }
