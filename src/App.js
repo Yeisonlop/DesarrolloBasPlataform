@@ -5,6 +5,7 @@ import Menu from "./components/Menu";
 import Carrusel from "./components/Carrusel";
 import Links from "./components/links";
 import Artistas from "./paginas/artistas";
+import Favoritos from "./paginas/favoritos";
 
 import "./App.css";
 
@@ -169,6 +170,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/artistas" element={<Artistas />} />
+        <Route path="/favoritos" element={<Favoritos />} />
       </Routes>
     </BrowserRouter>
   );

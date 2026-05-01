@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import img1 from '../imagenes/imagen1.jpg';
-import img2 from '../imagenes/imagen2.jpg';
-import img3 from '../imagenes/imagen3.jpg';
+import img1 from '../imagenes/Carrusel1.jpg';
+import img2 from '../imagenes/Carrusel2.jpg';
+import img3 from '../imagenes/Carrusel3.jpg';
 
 export const artistas = [
   {
