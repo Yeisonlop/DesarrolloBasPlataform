@@ -489,6 +489,7 @@ body {
   gap: 20px;
 }
 
+/* Grupo */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -503,8 +504,10 @@ body {
   letter-spacing: 0.5px;
 }
 
+/* Inputs generales */
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   color: var(--blanco, #f0f4f8);
@@ -514,24 +517,100 @@ body {
   font-family: 'DM Sans', sans-serif;
   outline: none;
   transition: border-color 0.2s;
-  resize: vertical;
 }
 
+/* Select estilo consistente */
+.form-group select {
+  cursor: pointer;
+}
+
+/* Focus */
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   border-color: var(--verde, #1db954);
 }
 
+/* Error */
 .form-group input.input-error,
-.form-group textarea.input-error {
+.form-group textarea.input-error,
+.form-group select.input-error {
   border-color: #ff4d4d;
 }
 
+/* Radios (género usuario) */
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-top: 6px;
+}
+
+.form-group select {
+  background-color: rgba(255,255,255,0.05);
+  color: var(--blanco);
+}
+
+/* Opciones del select */
+.form-group select option {
+  background-color: #161b22; 
+  color: #f0f4f8;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--blanco);
+  text-transform: none;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.radio-group input {
+  accent-color: var(--verde);
+  cursor: pointer;
+}
+
+/* Texto términos */
+.terminos-texto {
+  font-size: 0.8rem;
+  color: var(--gris);
+  line-height: 1.5;
+  background: rgba(255,255,255,0.03);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.checkbox-group input {
+  accent-color: var(--verde);
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  font-size: 0.9rem;
+  color: var(--blanco);
+  text-transform: none;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* Error */
 .error-msg {
   color: #ff4d4d;
   font-size: 0.8rem;
 }
 
+/* Botón */
 .btn-enviar {
   background: var(--verde, #1db954);
   border: none;
@@ -550,6 +629,7 @@ body {
   transform: translateY(-2px);
 }
 
+/* Mensaje éxito */
 .mensaje-exito {
   background: rgba(29,185,84,0.15);
   border: 1px solid rgba(29,185,84,0.4);

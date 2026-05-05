@@ -53,7 +53,7 @@ function ArtistaCard({ artista }) {
                 <button>▶ Play</button>
               </a>
 
-              {/* 🔥 NUEVO BOTÓN */}
+          
               <button onClick={agregarAFavoritos}>
                 ⭐ Favorito
               </button>

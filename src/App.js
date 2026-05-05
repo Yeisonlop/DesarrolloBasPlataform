@@ -12,27 +12,29 @@ import "./App.css";
 function Inicio() {
   const [indiceArtista, setIndiceArtista] = useState(0);
 
-  // Estado del formulario como objeto
+  // Estado del formulario
   const [formulario, setFormulario] = useState({
     nombre: "",
     email: "",
     mensaje: "",
+    genero: "",
+    aceptar: false,
+    generoUsuario: "",
   });
 
-  // Estado de errores como objeto
   const [errores, setErrores] = useState({});
-
-  // Estado de éxito al enviar
   const [enviado, setEnviado] = useState(false);
 
-  // Evento onChange — actualiza el objeto formulario
+  // Manejo de cambios
   const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
     setFormulario({
       ...formulario,
-      [e.target.name]: e.target.value,
+      [name]: type === "checkbox" ? checked : value,
     });
-    // Limpia el error del campo al escribir
-    setErrores({ ...errores, [e.target.name]: "" });
+
+    setErrores({ ...errores, [name]: "" });
   };
 
   // Validaciones
@@ -55,12 +57,25 @@ function Inicio() {
       nuevosErrores.mensaje = "El mensaje debe tener al menos 10 caracteres.";
     }
 
+    if (!formulario.genero) {
+      nuevosErrores.genero = "Selecciona un género musical.";
+    }
+
+    if (!formulario.generoUsuario) {
+      nuevosErrores.generoUsuario = "Selecciona una opción.";
+    }
+
+    if (!formulario.aceptar) {
+      nuevosErrores.aceptar = "Debes aceptar los términos.";
+    }
+
     return nuevosErrores;
   };
 
-  // Evento onSubmit
+  // Envío
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const erroresEncontrados = validar();
 
     if (Object.keys(erroresEncontrados).length > 0) {
@@ -68,12 +83,17 @@ function Inicio() {
       return;
     }
 
-    // Envío exitoso
     setEnviado(true);
-    setFormulario({ nombre: "", email: "", mensaje: "" });
+    setFormulario({
+      nombre: "",
+      email: "",
+      mensaje: "",
+      genero: "",
+      aceptar: false,
+      generoUsuario: "",
+    });
     setErrores({});
 
-    // Oculta el mensaje de éxito después de 4 segundos
     setTimeout(() => setEnviado(false), 4000);
   };
 
@@ -91,7 +111,7 @@ function Inicio() {
 
         <Links indiceArtista={indiceArtista} />
 
-        {/* ── FORMULARIO DE CONTACTO ── */}
+        {/* FORMULARIO */}
         <section className="contacto-section">
           <h2 className="contacto-titulo">Contáctanos</h2>
           <p className="contacto-subtitulo">
@@ -105,15 +125,16 @@ function Inicio() {
           )}
 
           <form className="formulario" onSubmit={handleSubmit} noValidate>
+
+            {/* Nombre */}
             <div className="form-group">
-              <label htmlFor="nombre">Nombre</label>
+              <label>Nombre</label>
               <input
                 type="text"
-                id="nombre"
                 name="nombre"
-                placeholder="Tu nombre completo"
                 value={formulario.nombre}
                 onChange={handleChange}
+                placeholder="Tu nombre completo"
                 className={errores.nombre ? "input-error" : ""}
               />
               {errores.nombre && (
@@ -121,15 +142,15 @@ function Inicio() {
               )}
             </div>
 
+            {/* Email */}
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label>Email</label>
               <input
                 type="email"
-                id="email"
                 name="email"
-                placeholder="tucorreo@ejemplo.com"
                 value={formulario.email}
                 onChange={handleChange}
+                placeholder="tucorreo@ejemplo.com"
                 className={errores.email ? "input-error" : ""}
               />
               {errores.email && (
@@ -137,15 +158,76 @@ function Inicio() {
               )}
             </div>
 
+            {/* Select */}
             <div className="form-group">
-              <label htmlFor="mensaje">Mensaje</label>
+              <label>Género musical favorito</label>
+              <select
+                name="genero"
+                value={formulario.genero}
+                onChange={handleChange}
+                className={errores.genero ? "input-error" : ""}
+              >
+                <option value="">Seleccione</option>
+                <option value="reggaeton">Reggaetón</option>
+                <option value="pop">Pop</option>
+                <option value="rap">Rap</option>
+              </select>
+              {errores.genero && (
+                <span className="error-msg">{errores.genero}</span>
+              )}
+            </div>
+
+            {/* Radio buttons */}
+            <div className="form-group">
+              <label>Género</label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="generoUsuario"
+                  value="hombre"
+                  checked={formulario.generoUsuario === "hombre"}
+                  onChange={handleChange}
+                />
+                Hombre
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="generoUsuario"
+                  value="mujer"
+                  checked={formulario.generoUsuario === "mujer"}
+                  onChange={handleChange}
+                />
+                Mujer
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="generoUsuario"
+                  value="otro"
+                  checked={formulario.generoUsuario === "otro"}
+                  onChange={handleChange}
+                />
+                Otro
+              </label>
+
+              {errores.generoUsuario && (
+                <span className="error-msg">{errores.generoUsuario}</span>
+              )}
+            </div>
+
+            {/* Mensaje */}
+            <div className="form-group">
+              <label>Mensaje</label>
               <textarea
-                id="mensaje"
                 name="mensaje"
-                placeholder="Escribe tu mensaje aquí..."
-                rows={4}
                 value={formulario.mensaje}
                 onChange={handleChange}
+                placeholder="Escribe tu mensaje aquí..."
+                rows={4}
                 className={errores.mensaje ? "input-error" : ""}
               />
               {errores.mensaje && (
@@ -153,9 +235,34 @@ function Inicio() {
               )}
             </div>
 
+            {/* Términos */}
+            <div className="form-group terminos-box">
+              <p className="terminos-texto">
+                Al enviar este formulario, aceptas que tu información será utilizada
+                únicamente para responder a tu solicitud. No compartiremos tus datos
+                con terceros y serán tratados de forma confidencial.
+              </p>
+
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  name="aceptar"
+                  checked={formulario.aceptar}
+                  onChange={handleChange}
+                />
+                Acepto los términos y condiciones
+              </label>
+
+              {errores.aceptar && (
+                <span className="error-msg">{errores.aceptar}</span>
+              )}
+            </div>
+
+            {/* Botón */}
             <button type="submit" className="btn-enviar">
               Enviar mensaje
             </button>
+
           </form>
         </section>
       </div>
