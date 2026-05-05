@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ArtistaCard from "../components/artistaCard";
 import Buscador from "../components/buscadorA";
 import { useNavigate } from "react-router-dom";
@@ -22,16 +22,22 @@ const artistas = [
 function Artistas() {
   const [busqueda, setBusqueda] = useState("");
   const [favoritos, setFavoritos] = useState([]);
+  const primeraCarga = useRef(true);
 
   const navigate = useNavigate();
 
-  // LOCAL STORAGE
+  // CARGAR desde LocalStorage
   useEffect(() => {
     const data = localStorage.getItem("favoritos");
     if (data) setFavoritos(JSON.parse(data));
   }, []);
 
+  // GUARDAR en LocalStorage (evitando primera ejecución)
   useEffect(() => {
+    if (primeraCarga.current) {
+      primeraCarga.current = false;
+      return;
+    }
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
   }, [favoritos]);
 
@@ -54,14 +60,12 @@ function Artistas() {
 
       <Buscador busqueda={busqueda} setBusqueda={setBusqueda} />
 
-      {/* GALERÍA COMPLETA */}
       <div className="galeria">
         {artistasFiltrados.map((a) => (
           <ArtistaCard key={a.nombre} artista={a} />
         ))}
       </div>
 
-      {/* CANASTA */}
       <div
         className="canasta"
         onDrop={(e) => {
@@ -78,8 +82,8 @@ function Artistas() {
           <p>Arrastra artistas aquí</p>
         ) : (
           <div className="canasta-preview">
-            {favoritos.map((a, index) => (
-              <img key={index} src={a.imagen} alt={a.nombre} />
+            {favoritos.map((a) => (
+              <img key={a.nombre} src={a.imagen} alt={a.nombre} />
             ))}
           </div>
         )}

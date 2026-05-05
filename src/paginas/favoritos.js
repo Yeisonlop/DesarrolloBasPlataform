@@ -4,8 +4,15 @@ function Favoritos() {
   const [favoritos, setFavoritos] = useState([]);
 
   useEffect(() => {
-    const data = localStorage.getItem("favoritos");
-    if (data) setFavoritos(JSON.parse(data));
+    try {
+      const data = localStorage.getItem("favoritos");
+      if (data) {
+        setFavoritos(JSON.parse(data));
+      }
+    } catch (error) {
+      console.error("Error leyendo favoritos:", error);
+      setFavoritos([]);
+    }
   }, []);
 
   const eliminar = (nombre) => {
@@ -21,8 +28,8 @@ function Favoritos() {
       {favoritos.length === 0 ? (
         <p>No tienes favoritos aún</p>
       ) : (
-        favoritos.map((a, index) => (
-          <div key={index} className="playlist-item">
+        favoritos.map((a) => (
+          <div key={a.nombre} className="playlist-item">
             <img src={a.imagen} alt={a.nombre} />
             <span>{a.nombre}</span>
 

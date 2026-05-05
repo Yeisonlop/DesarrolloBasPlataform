@@ -7,6 +7,26 @@ function ArtistaCard({ artista }) {
     e.dataTransfer.setData("artista", JSON.stringify(artista));
   };
 
+  const agregarAFavoritos = () => {
+    try {
+      const data = localStorage.getItem("favoritos");
+      const favoritos = data ? JSON.parse(data) : [];
+
+      const existe = favoritos.some(f => f.nombre === artista.nombre);
+
+      if (!existe) {
+        const nuevos = [...favoritos, artista];
+        localStorage.setItem("favoritos", JSON.stringify(nuevos));
+        alert("Artista agregado a favoritos");
+      } else {
+        alert("Este artista ya está en favoritos");
+      }
+
+    } catch (error) {
+      console.error("Error al guardar favorito:", error);
+    }
+  };
+
   return (
     <HoverCard.Root>
       <HoverCard.Trigger asChild>
@@ -32,6 +52,11 @@ function ArtistaCard({ artista }) {
               <a href={artista.spotify} target="_blank" rel="noopener noreferrer">
                 <button>▶ Play</button>
               </a>
+
+              {/* 🔥 NUEVO BOTÓN */}
+              <button onClick={agregarAFavoritos}>
+                ⭐ Favorito
+              </button>
             </div>
           </div>
         </div>
