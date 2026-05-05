@@ -171,6 +171,8 @@ function Inicio() {
                 <option value="reggaeton">Reggaetón</option>
                 <option value="pop">Pop</option>
                 <option value="rap">Rap</option>
+                <option value="Hip Hop">Hip Hop</option>
+                <option value="Electronica">Electrónica</option>
               </select>
               {errores.genero && (
                 <span className="error-msg">{errores.genero}</span>
