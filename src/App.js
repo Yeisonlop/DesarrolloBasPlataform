@@ -6,13 +6,19 @@ import Carrusel from "./components/Carrusel";
 import Links from "./components/links";
 import Artistas from "./paginas/artistas";
 import Favoritos from "./paginas/favoritos";
+import Merch from "./paginas/merch";
+import Carrito from "./paginas/carrito";
+import Checkout from "./paginas/Checkout";
+import Exito from "./paginas/Exito";
+import Fallo from "./paginas/Fallo";
+
+import { CartProvider } from "./context/CartContext";
 
 import "./App.css";
 
 function Inicio() {
   const [indiceArtista, setIndiceArtista] = useState(0);
 
-  // Estado del formulario
   const [formulario, setFormulario] = useState({
     nombre: "",
     email: "",
@@ -25,7 +31,6 @@ function Inicio() {
   const [errores, setErrores] = useState({});
   const [enviado, setEnviado] = useState(false);
 
-  // Manejo de cambios
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -37,7 +42,6 @@ function Inicio() {
     setErrores({ ...errores, [name]: "" });
   };
 
-  // Validaciones
   const validar = () => {
     const nuevosErrores = {};
 
@@ -72,7 +76,6 @@ function Inicio() {
     return nuevosErrores;
   };
 
-  // Envío
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -84,6 +87,7 @@ function Inicio() {
     }
 
     setEnviado(true);
+
     setFormulario({
       nombre: "",
       email: "",
@@ -92,6 +96,7 @@ function Inicio() {
       aceptar: false,
       generoUsuario: "",
     });
+
     setErrores({});
 
     setTimeout(() => setEnviado(false), 4000);
@@ -274,14 +279,22 @@ function Inicio() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Menu />
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/artistas" element={<Artistas />} />
-        <Route path="/favoritos" element={<Favoritos />} />
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Menu />
+
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/artistas" element={<Artistas />} />
+          <Route path="/favoritos" element={<Favoritos />} />
+          <Route path="/merch" element={<Merch />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/exito" element={<Exito />} />
+          <Route path="/fallo" element={<Fallo />} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 
