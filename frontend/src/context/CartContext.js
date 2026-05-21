@@ -14,7 +14,11 @@ export function CartProvider({ children, token }) {
       })
         .then((r) => r.json())
         .then((data) => {
-          if (data.items && data.items.length > 0) setCarrito(data.items);
+          if (data.items && data.items.length > 0) {
+            setCarrito(data.items);
+          } else {
+            setCarrito([]);
+          }
         })
         .catch(() => {});
     } else {
@@ -22,6 +26,7 @@ export function CartProvider({ children, token }) {
     }
   }, [token]);
 
+  // Sincronizar carrito con backend
   const sincronizar = useCallback(
     (nuevoCarrito) => {
       if (token) {
@@ -38,19 +43,34 @@ export function CartProvider({ children, token }) {
     [token]
   );
 
+  // AGREGAR PRODUCTO
   const agregar = (producto) => {
+
+    // VALIDAR LOGIN
+    if (!token) {
+      window.dispatchEvent(
+        new CustomEvent("mostrar-login-alerta")
+    );
+    return;
+  }
+
     setCarrito((prev) => {
       const existe = prev.find((p) => p.id === producto.id);
+
       const nuevo = existe
         ? prev.map((p) =>
-            p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
+            p.id === producto.id
+              ? { ...p, cantidad: p.cantidad + 1 }
+              : p
           )
         : [...prev, { ...producto, cantidad: 1 }];
+
       sincronizar(nuevo);
       return nuevo;
     });
   };
 
+  // ELIMINAR PRODUCTO
   const eliminar = (id) => {
     setCarrito((prev) => {
       const nuevo = prev.filter((p) => p.id !== id);
@@ -59,25 +79,45 @@ export function CartProvider({ children, token }) {
     });
   };
 
+  // RESTAR CANTIDAD
   const restar = (id) => {
     setCarrito((prev) => {
       const nuevo = prev
-        .map((p) => (p.id === id ? { ...p, cantidad: p.cantidad - 1 } : p))
+        .map((p) =>
+          p.id === id
+            ? { ...p, cantidad: p.cantidad - 1 }
+            : p
+        )
         .filter((p) => p.cantidad > 0);
+
       sincronizar(nuevo);
       return nuevo;
     });
   };
 
+  // LIMPIAR CARRITO
   const limpiar = () => {
     setCarrito([]);
     sincronizar([]);
   };
 
-  const cantidad = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+  // TOTAL ITEMS
+  const cantidad = carrito.reduce(
+    (acc, p) => acc + p.cantidad,
+    0
+  );
 
   return (
-    <CartContext.Provider value={{ carrito, agregar, eliminar, restar, limpiar, cantidad }}>
+    <CartContext.Provider
+      value={{
+        carrito,
+        agregar,
+        eliminar,
+        restar,
+        limpiar,
+        cantidad,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
