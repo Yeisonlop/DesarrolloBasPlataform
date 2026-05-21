@@ -11,7 +11,13 @@ const PORT = 4000;
 const JWT_SECRET = "soundstage_secret_2024_jwt";
 const DB_PATH = path.join(__dirname, "soundstage.db");
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://desarrollo-bas-plataform-w1dm.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // ─── Base de datos ───────────────────────────────────────────────────────────
