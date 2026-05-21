@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 const CartContext = createContext();
-const API = "http://localhost:4000/api";
+const API = "https://soundstage-backend.onrender.com/api";
 
 export function CartProvider({ children, token }) {
   const [carrito, setCarrito] = useState([]);

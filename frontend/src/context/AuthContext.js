@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 
 const AuthContext = createContext();
 
-const API = "http://localhost:4000/api";
+const API = "https://soundstage-backend.onrender.com/api";
 
 export function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(null);
