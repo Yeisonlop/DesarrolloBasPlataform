@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import imagen1Front from "../imagenes/Respect_your_mother.webp";
-import imagen2Front from "../imagenes/Saco_rojo_1.webp";
-import imagen2Back from "../imagenes/Saco_rojo_2.webp";
-import imagen3Front from "../imagenes/Disco_1.webp";
-import imagen3Back from "../imagenes/Disco_2.webp";
-import imagen4Front from "../imagenes/Camisa_Who_1.webp";
-import imagen4Back from "../imagenes/Camisa_Who_2.webp";
 import imagenArtista1 from "../imagenes/HarryStyles.jpg";
+import imagenArtista2 from "../imagenes/KarolG.jpg";
+import imagenArtista3 from "../imagenes/Tr1.jpg";
 
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -29,58 +23,99 @@ function MerchPage() {
         {
           id: 1,
           nombre: "Camisa 'RESPECT YOUR MOTHER'",
-          precio: 35.00,
-          imagenFront: imagen1Front,
-          imagenBack: imagen1Front
+          precio: "45.000",
+          imagenFront: "https://store-uk.hstyles.co.uk/cdn/shop/files/RESPECT-YOUR-MOTHER-PURPLE-TEEv2.png?v=1779317613&width=1600",
+          imagenBack: "https://store-uk.hstyles.co.uk/cdn/shop/files/RESPECT-YOUR-MOTHER-PURPLE-TEEv2.png?v=1779317613&width=1600"
         },
         {
           id: 2,
           nombre: "Hoodie Tracklist",
-          precio: 18,
-          imagenFront: imagen2Front,
-          imagenBack: imagen2Back
+          precio: "85.000",
+          imagenFront: "https://store-uk.hstyles.co.uk/cdn/shop/files/TRACKLIST-HOODIE-FRONT-RED.png?v=1779094272&width=832",
+          imagenBack: "https://store-uk.hstyles.co.uk/cdn/shop/files/TRACKLIST-HOODIE-BACK-RED.png?v=1779094272&width=3840"
         },
         {
           id: 5,
           nombre: "Kiss All The Thime. Disco, Ocassionally - Vinilo negro",
-          precio: 12,
-          imagenFront: imagen3Front,
-          imagenBack: imagen3Back
+          precio: "120.000",
+          imagenFront: "https://store-uk.hstyles.co.uk/cdn/shop/files/RENEGADE-PACKSHOT-VINYL-black.png?v=1768476070&width=832",
+          imagenBack: "https://store-uk.hstyles.co.uk/cdn/shop/files/BLACKLP.png?v=1768476071&width=832"
         },
         {
           id: 6,
           nombre: "Camisa 'WHO ME'",
-          precio: 40,
-          imagenFront: imagen4Front,
-          imagenBack: imagen4Back
+          precio: "45.000",
+          imagenFront: "https://store-uk.hstyles.co.uk/cdn/shop/files/HARRY-PICTURE-TEE-2-FRONT.png?v=1773410684&width=832",
+          imagenBack: "https://store-uk.hstyles.co.uk/cdn/shop/files/HARRY-PICTURE-TEE-2-BACK.png?v=1773410684&width=1920"
         },
       ],
     },
 
     {
       nombre: "Karol G",
-      imagen: "/imagenes/karolg.jpg",
+      imagen: imagenArtista2,
       productos: [
         {
           id: 3,
-          nombre: "Hoodie Karol G",
-          precio: 45,
-          imagenFront: "/imagenes/merch3.jpg",
-          imagenBack: "/imagenes/merch3_back.jpg"
+          nombre: "Bolso Karol G",
+          precio: "25.000",
+          imagenFront: "https://shopkarolg.com/cdn/shop/files/Bag_02_8fab2d5b-8ed4-44cc-8c23-3c86c807b1c2.png?v=1750275382&width=800",
+          imagenBack: "https://shopkarolg.com/cdn/shop/files/Bag_01_ba3ec4d8-3b41-4d8d-ae09-5836f65f0d7c.png?v=1750275382&width=800"
         },
         {
           id: 4,
-          nombre: "Camiseta Karol G",
-          precio: 30,
-          imagenFront: "/imagenes/merch1.jpg",
-          imagenBack: "/imagenes/merch1_back.jpg"
+          nombre: "LATINA FOREVA Tee",
+          precio: "45.000",
+          imagenFront: "https://shopkarolg.com/cdn/shop/files/KG-FInal_01.2_1.png?v=1748623136&width=800",
+          imagenBack: "https://shopkarolg.com/cdn/shop/files/KG-FInal_02_1.png?v=1748623138&width=800"
         },
         {
           id: 7,
-          nombre: "Poster Karol G",
-          precio: 15,
-          imagenFront: "/imagenes/merch6.jpg",
-          imagenBack: "/imagenes/merch6_back.jpg"
+          nombre: "Tropicoqueta Tank Top",
+          precio: "35.000",
+          imagenFront: "https://shopkarolg.com/cdn/shop/files/Tank-top-new_02_a081f006-6354-45f5-8f17-b11a24907a4a.png?v=1762802830&width=800",
+          imagenBack: "https://shopkarolg.com/cdn/shop/files/Tank-top_01_02b3370b-4938-4ea6-9f0f-73fbb86c9f24.png?v=1762802833&width=800"
+        },
+        {
+          id: 7,
+          nombre: "Tropicoqueta Scarf",
+          precio: "20.000",
+          imagenFront: "https://shopkarolg.com/cdn/shop/files/bandana_01.png?v=1750275339&width=800",
+          imagenBack: "https://shopkarolg.com/cdn/shop/files/bandana_02.png?v=1750275339&width=800"
+        },
+      ],
+    },
+    {
+      nombre: "Trueno",
+      imagen: imagenArtista3,
+      productos: [
+        {
+          id: 1,
+          nombre: "Trueno · EUB Tracklist Navy camisa",
+          precio: "45.000",
+          imagenFront: "https://cdnx.jumpseller.com/gen-wave1/image/49559882/resize/610/610?1717860514",
+          imagenBack: "https://cdnx.jumpseller.com/gen-wave1/image/49559884/resize/610/610?1717860514"
+        },
+        {
+          id: 2,
+          nombre: "Trueno · Dance Crip camisa",
+          precio: "45.000",
+          imagenFront: "https://cdnx.jumpseller.com/gen-wave1/image/49559965/resize/610/610?1717860883",
+          imagenBack: "https://cdnx.jumpseller.com/gen-wave1/image/49559964/resize/610/610?1717860883"
+        },
+        {
+          id: 5,
+          nombre: "Trueno · E.U.B camisa",
+          precio: "45.000",
+          imagenFront: "https://cdnx.jumpseller.com/gen-wave1/image/49560154/resize/610/610?1717861754",
+          imagenBack: "https://cdnx.jumpseller.com/gen-wave1/image/49560154/resize/610/610?1717861754"
+        },
+        {
+          id: 6,
+          nombre: "Gorra Bordada Trueno",
+          precio: "40.000",
+          imagenFront: "https://acdn-us.mitiendanube.com/stores/001/661/362/products/gorro-de-lana_trueno-0869f4c4bf5699a31617494963298512-1024-1024.webp",
+          imagenBack: "https://acdn-us.mitiendanube.com/stores/001/661/362/products/gorro-de-lana_trueno-0869f4c4bf5699a31617494963298512-1024-1024.webp"
         },
       ],
     },

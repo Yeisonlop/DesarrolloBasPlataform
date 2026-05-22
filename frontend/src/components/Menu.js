@@ -29,7 +29,7 @@ function Menu() {
         <Link to="/favoritos">Favoritos</Link>
         <Link to="/merch">Merch</Link>
 
-        <Link to="/carrito" className="carrito-nav">
+        <Link to="/carrito" className="menu-links">
           {cantidad > 0 && <span className="badge-carrito">{cantidad}</span>}
           <span className="texto-carrito">Carrito</span>
         </Link>
